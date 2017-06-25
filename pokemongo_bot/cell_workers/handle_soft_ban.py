@@ -61,6 +61,12 @@ class HandleSoftBan(BaseTask):
             player_latitude=f2i(self.bot.position[0]),
             player_longitude=f2i(self.bot.position[1])
         )
+        request.check_challenge()
+        request.get_hatched_eggs()
+        request.get_inventory()
+        request.check_awarded_badges()
+        request.download_settings()
+        request.get_buddy_walked()
         request.call()
         
         self.emit_event(

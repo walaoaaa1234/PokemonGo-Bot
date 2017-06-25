@@ -168,6 +168,12 @@ class EvolvePokemon(BaseTask):
         
         request = self.bot.api.create_request()
         request.evolve_pokemon(pokemon_id=pokemon.unique_id)
+        request.check_challenge()
+        request.get_hatched_eggs()
+        request.get_inventory()
+        request.check_awarded_badges()
+        request.download_settings()
+        request.get_buddy_walked()
         response_dict = request.call()
         
         if response_dict.get('responses', {}).get('EVOLVE_POKEMON', {}).get('result', 0) == 1:

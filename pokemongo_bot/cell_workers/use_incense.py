@@ -74,6 +74,12 @@ class UseIncense(BaseTask):
             
             request = self.bot.api.create_request()
             request.use_incense(incense_type=self._get_type())
+            request.check_challenge()
+            request.get_hatched_eggs()
+            request.get_inventory()
+            request.check_awarded_badges()
+            request.download_settings()
+            request.get_buddy_walked()
             response_dict = request.call()
             
             result = response_dict.get('responses', {}).get('USE_INCENSE', {}).get('result', 0)

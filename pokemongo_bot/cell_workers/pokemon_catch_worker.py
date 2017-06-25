@@ -264,6 +264,14 @@ class PokemonCatchWorker(BaseTask):
                 encounter_id=encounter_id,
                 encounter_location=self.pokemon['encounter_location']
             )
+        
+        request.check_challenge()
+        request.get_hatched_eggs()
+        request.get_inventory()
+        request.check_awarded_badges()
+        request.download_settings()
+        request.get_buddy_walked()
+        
         return request.call()
 
     ############################################################################
@@ -403,6 +411,12 @@ class PokemonCatchWorker(BaseTask):
         request.use_item_encounter(item=berry_id,
                                    encounter_id=encounter_id,
                                    spawn_point_guid=self.spawn_point_guid)
+        request.check_challenge()
+        request.get_hatched_eggs()
+        request.get_inventory()
+        request.check_awarded_badges()
+        request.download_settings()
+        request.get_buddy_walked()
         response_dict = request.call()
         
         responses = response_dict['responses']
@@ -599,6 +613,12 @@ class PokemonCatchWorker(BaseTask):
                 spin_modifier=throw_parameters['spin_modifier'],
                 normalized_hit_position=throw_parameters['normalized_hit_position']
             )
+            request.check_challenge()
+            request.get_hatched_eggs()
+            request.get_inventory()
+            request.check_awarded_badges()
+            request.download_settings()
+            request.get_buddy_walked()
             response_dict = request.call()
             
             try:

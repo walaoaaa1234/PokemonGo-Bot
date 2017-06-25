@@ -146,6 +146,12 @@ class BuddyPokemon(BaseTask):
     def _set_buddy(self, pokemon):
         request = self.bot.api.create_request()
         request.set_buddy_pokemon(pokemon_id=pokemon.unique_id)
+        request.check_challenge()
+        request.get_hatched_eggs()
+        request.get_inventory()
+        request.check_awarded_badges()
+        request.download_settings()
+        request.get_buddy_walked()
         response_dict = request.call()
         
         data = response_dict.get('responses', {}).get('SET_BUDDY_POKEMON', {})

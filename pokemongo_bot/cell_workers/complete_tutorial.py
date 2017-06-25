@@ -98,6 +98,11 @@ class CompleteTutorial(BaseTask):
         
         request = self.bot.api.create_request()
         request.encounter_tutorial_complete(pokemon_id=first_pokemon_id)
+        request.check_challenge()
+        request.get_hatched_eggs()
+        request.get_inventory()
+        request.check_awarded_badges()
+        request.download_settings()
         response_dict = request.call()
         
         try:
@@ -133,6 +138,11 @@ class CompleteTutorial(BaseTask):
         
         request = self.bot.api.create_request()
         request.set_avatar(player_avatar=avatar)
+        request.check_challenge()
+        request.get_hatched_eggs()
+        request.get_inventory()
+        request.check_awarded_badges()
+        request.download_settings()
         response_dict = request.call()
         
         status = response_dict['responses']['SET_AVATAR']['status']
@@ -155,6 +165,11 @@ class CompleteTutorial(BaseTask):
     def _set_nickname(self, nickname):
         request = self.bot.api.create_request()
         request.claim_codename(codename=nickname)
+        request.check_challenge()
+        request.get_hatched_eggs()
+        request.get_inventory()
+        request.check_awarded_badges()
+        request.download_settings()
         response_dict = request.call()
         
         try:
@@ -183,6 +198,11 @@ class CompleteTutorial(BaseTask):
         request.mark_tutorial_complete(tutorials_completed=[completed], 
                                        send_marketing_emails=False,
                                        send_push_notifications=False)
+        request.check_challenge()
+        request.get_hatched_eggs()
+        request.get_inventory()
+        request.check_awarded_badges()
+        request.download_settings()
         response_dict = request.call()
         
         try:
@@ -204,6 +224,12 @@ class CompleteTutorial(BaseTask):
         sleep(10)
         request = self.bot.api.create_request()
         request.set_player_team(team=self.team)
+        request.check_challenge()
+        request.get_hatched_eggs()
+        request.get_inventory()
+        request.check_awarded_badges()
+        request.download_settings()
+        request.get_buddy_walked()
         response_dict = request.call()
         
         try:

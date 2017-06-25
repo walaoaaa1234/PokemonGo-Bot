@@ -230,6 +230,12 @@ class CatchPokemon(BaseTask):
         # call self.bot.api.get_incense_pokemon
         request = self.bot.api.create_request()
         request.get_incense_pokemon()
+        request.check_challenge()
+        request.get_hatched_eggs()
+        request.get_inventory()
+        request.check_awarded_badges()
+        request.download_settings()
+        request.get_buddy_walked()
         pokemon_to_catch = request.call()
 
         if len(pokemon_to_catch) > 0:

@@ -97,6 +97,12 @@ class SpinFort(BaseTask):
                     player_latitude = f2i(self.bot.position[0]), 
                     player_longitude = f2i(self.bot.position[1])
                 )
+                request.check_challenge()
+                request.get_hatched_eggs()
+                request.get_inventory()
+                request.check_awarded_badges()
+                request.download_settings()
+                request.get_buddy_walked()
                 response_dict = request.call()
 
                 if ('responses' in response_dict) and ('ADD_FORT_MODIFIER' in response_dict['responses']):
@@ -123,6 +129,12 @@ class SpinFort(BaseTask):
             player_latitude=f2i(self.bot.position[0]),
             player_longitude=f2i(self.bot.position[1])
         )
+        request.check_challenge()
+        request.get_hatched_eggs()
+        request.get_inventory()
+        request.check_awarded_badges()
+        request.download_settings()
+        request.get_buddy_walked()
         response_dict = request.call()
         
         if ('responses' in response_dict) and ('FORT_SEARCH' in response_dict['responses']):

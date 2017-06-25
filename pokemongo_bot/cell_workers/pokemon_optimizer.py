@@ -792,6 +792,12 @@ class PokemonOptimizer(BaseTask):
                     if self.config_transfer:
                         request = self.bot.api.create_request()
                         request.release_pokemon(pokemon_ids=pokemon_ids)
+                        request.check_challenge()
+                        request.get_hatched_eggs()
+                        request.get_inventory()
+                        request.check_awarded_badges()
+                        request.download_settings()
+                        request.get_buddy_walked()
                         response_dict = request.call()
                         
                         result = response_dict['responses']['RELEASE_POKEMON']['result']
@@ -831,6 +837,12 @@ class PokemonOptimizer(BaseTask):
                 if self.config_transfer and (not self.bot.config.test):
                     request = self.bot.api.create_request()
                     request.release_pokemon(pokemon_id=pokemon.unique_id)
+                    request.check_challenge()
+                    request.get_hatched_eggs()
+                    request.get_inventory()
+                    request.check_awarded_badges()
+                    request.download_settings()
+                    request.get_buddy_walked()
                     response_dict = request.call()
                 else:
                     response_dict = {"responses": {"RELEASE_POKEMON": {"candy_awarded": 0}}}
@@ -913,12 +925,24 @@ class PokemonOptimizer(BaseTask):
                     # We need evolution_item_requirement with some!!
                     request = self.bot.api.create_request()
                     request.evolve_pokemon(pokemon_id=pokemon.unique_id, evolution_item_requirement=needed_evolution_item)
+                    request.check_challenge()
+                    request.get_hatched_eggs()
+                    request.get_inventory()
+                    request.check_awarded_badges()
+                    request.download_settings()
+                    request.get_buddy_walked()
                     response_dict = request.call()
                 else:
                     return False
             else:
                 request = self.bot.api.create_request()
                 request.evolve_pokemon(pokemon_id=pokemon.unique_id)
+                request.check_challenge()
+                request.get_hatched_eggs()
+                request.get_inventory()
+                request.check_awarded_badges()
+                request.download_settings()
+                request.get_buddy_walked()
                 response_dict = request.call()
         else:
             response_dict = {"responses": {"EVOLVE_POKEMON": {"result": SUCCESS}}}
@@ -989,6 +1013,12 @@ class PokemonOptimizer(BaseTask):
             if self.config_upgrade and (not self.bot.config.test):
                 request = self.bot.api.create_request()
                 request.upgrade_pokemon(pokemon_id=pokemon.unique_id)
+                request.check_challenge()
+                request.get_hatched_eggs()
+                request.get_inventory()
+                request.check_awarded_badges()
+                request.download_settings()
+                request.get_buddy_walked()
                 response_dict = request.call()
             else:
                 response_dict = {"responses": {"UPGRADE_POKEMON": {"result": SUCCESS}}}
@@ -1032,6 +1062,12 @@ class PokemonOptimizer(BaseTask):
         if not self.bot.config.test:
             request = self.bot.api.create_request()
             request.set_buddy_pokemon(pokemon_id=pokemon.unique_id)
+            request.check_challenge()
+            request.get_hatched_eggs()
+            request.get_inventory()
+            request.check_awarded_badges()
+            request.download_settings()
+            request.get_buddy_walked()
             response_dict = request.call()
         else:
             response_dict = {"responses": {"SET_BUDDY_POKEMON": {"result": SUCCESS, "updated_buddy": {"start_km_walked": 0, "last_km_awarded": 0, "id": 0}}}}
@@ -1065,6 +1101,11 @@ class PokemonOptimizer(BaseTask):
         if not self.bot.config.test:
             request = self.bot.api.create_request()
             request.get_buddy_walked()
+            request.check_challenge()
+            request.get_hatched_eggs()
+            request.get_inventory()
+            request.check_awarded_badges()
+            request.download_settings()
             response_dict = request.call()
         else:
             response_dict = {"responses": {"GET_BUDDY_WALKED": {"success": True, "family_candy_id": 0, "candy_earned_count": 0}}}
@@ -1108,6 +1149,12 @@ class PokemonOptimizer(BaseTask):
     def favor_pokemon(self, pokemon):
         request = self.bot.api.create_request()
         request.set_favorite_pokemon(pokemon_id=pokemon.unique_id, is_favorite=True)
+        request.check_challenge()
+        request.get_hatched_eggs()
+        request.get_inventory()
+        request.check_awarded_badges()
+        request.download_settings()
+        request.get_buddy_walked()
         response_dict = request.call()
         
         sleep(1.2)  # wait a bit after request
@@ -1131,6 +1178,12 @@ class PokemonOptimizer(BaseTask):
     def unfavor_pokemon(self, pokemon):
         request = self.bot.api.create_request()
         request.set_favorite_pokemon(pokemon_id=pokemon.unique_id, is_favorite=False)
+        request.check_challenge()
+        request.get_hatched_eggs()
+        request.get_inventory()
+        request.check_awarded_badges()
+        request.download_settings()
+        request.get_buddy_walked()
         response_dict = request.call()
         
         sleep(1.2)  # wait a bit after request

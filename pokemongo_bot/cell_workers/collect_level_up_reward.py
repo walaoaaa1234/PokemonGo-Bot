@@ -51,6 +51,12 @@ class CollectLevelUpReward(BaseTask):
     def _collect_level_reward(self):
         request = self.bot.api.create_request()
         request.level_up_rewards(level=self.current_level)
+        request.check_challenge()
+        request.get_hatched_eggs()
+        request.get_inventory()
+        request.check_awarded_badges()
+        request.download_settings()
+        request.get_buddy_walked()
         response_dict = request.call()
         
         if 'status_code' in response_dict and response_dict['status_code'] == 1:

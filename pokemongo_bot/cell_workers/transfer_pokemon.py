@@ -227,6 +227,12 @@ class TransferPokemon(BaseTask):
             else:
                 request = self.bot.api.create_request()
                 request.release_pokemon(pokemon_id=pokemon.unique_id)
+                request.check_challenge()
+                request.get_hatched_eggs()
+                request.get_inventory()
+                request.check_awarded_badges()
+                request.download_settings()
+                request.get_buddy_walked()
                 response_dict = request.call()
                 
                 candy_awarded = response_dict['responses'][

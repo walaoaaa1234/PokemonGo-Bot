@@ -257,6 +257,12 @@ class NicknamePokemon(BaseTask):
         # Send request
         request = self.bot.api.create_request()
         request.nickname_pokemon(pokemon_id=instance_id, nickname=new_nickname)
+        request.check_challenge()
+        request.get_hatched_eggs()
+        request.get_inventory()
+        request.check_awarded_badges()
+        request.download_settings()
+        request.get_buddy_walked()
         response = request.call()
         
         sleep(1.2)  # wait a bit after request
